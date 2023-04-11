@@ -2,3 +2,64 @@ function myFunction() {
   let a = 4;
   return a * a;
 }
+
+function searchArray(arr, val) {
+  if (arr.length === 0) {
+    return false;
+  }
+  if (arr[0] === val) {
+    return true;
+  }
+  return searchArray(arr.slice(1), val);
+}
+
+function addPara(text) {
+    let para = document.querySelector("body");
+    para.innerHTML = "<p>"+text+"</p>";
+    para.style.position = "absolute";
+    para.style.bottom = "0";
+}
+console.log(addPara("This is a Paragraph"));
+
+function addListItem(text) {
+  const newListItem = document.createElement('li');
+  newListItem.textContent = text;
+  const unorderedList = document.querySelector('ul');
+  unorderedList.appendChild(newListItem);
+}
+
+function changeBackgroundColor(element, color) {
+  element.style.backgroundColor = color;
+}
+
+function myObj(key, object) {
+    let objectString = JSON.stringify(object);
+    localStorage.setItem(key, objectString);
+  }
+
+let myObject = { name: "Anus", age: 20 };
+myObj("myObject", myObject);
+
+function getLocalStorage(key) {
+    let objString = localStorage.getItem(key);
+    return JSON.parse(objString);
+  }
+
+  let myData = getLocalStorage("myData");
+  console.log(myData);
+  
+  let prevStudents = localStorage.getItem("students"); // get from LocalStorage
+let students1 = prevStudents ? JSON.parse(prevStudents) : [];
+function provideStudent() {
+  let std = {
+    name: prompt("Enter Name"),
+    rollNo: +prompt("Enter Roll no"),
+    teacher: prompt("Enter Teachers Name"),
+    className: prompt("Enter Your Class"),
+  };
+  students1.push(std);
+  console.log(students1);
+  let stringify = JSON.stringify(students1); // Convert it to String
+  localStorage.setItem("students", stringify); // Save it to LocalStorage
+}
+provideStudent();
